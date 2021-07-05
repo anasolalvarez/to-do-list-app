@@ -46,7 +46,9 @@ function newItem() {
 
 $('#input').keypress((event) => {
   var keycode = (event.keyCode ? event.keyCode : event.which);
-  if (keycode === '13') {
-    newitem();
+  console.log('line')
+  if (keycode === 13) {
+    event.preventDefault();
+    newItem();
   }
 });
