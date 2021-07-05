@@ -4,26 +4,24 @@ function newItem() {
   //1. Adding a new item to the list of items:
 
   let li = $('<li></li>'); // create new items
-  let inputValue = $('#input').val(); // what does this val() means
+  let inputValue = $('#input').val();
   li.append(inputValue);
-}
-
-if (inputValue === '') {
-  alert("Empty!");
-} else {
-  $('#list').append(li);
-} // alert message or new list item
-
-//2. Crossing out an item from the list of items:
-function crossOut() {
-  li.toggleClass("strike");
 
 
-  li.on("dblclick", function crossOut() {
-      li.toggleClass("strike");
-    )
+  if (inputValue === '') {
+    alert("Empty!");
+  } else {
+    $('#list').append(li);
+  } // alert message or new list item
+
+  //2. Crossing out an item from the list of items:
+  function crossOut() {
+    li.toggleClass("strike");
   }
 
+  li.on("dblclick", function crossOut() {
+    li.toggleClass("strike");
+  })
   //3(i). Adding the delete button "X":
 
   let crossOutButton = $('<crossOutButton></crossOutButton>');
@@ -39,7 +37,15 @@ function crossOut() {
   function deleteListItem() {
     li.addClass("delete")
   }
-}
 
-// 4. Reordering the items:
-$('#list').sortable();
+  // 4. Reordering the items:
+  $('#list').sortable();
+
+  $('#input').keypress((event) => {
+    var keycode = (event.keyCode ? event.keyCode : event.which);
+    if (keycode === '13') {
+      newitem();
+    }
+  });
+
+}
